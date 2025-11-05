@@ -74,7 +74,7 @@ Esta é a seção mais densa, focada em gerar dados programaticamente.
 
     -  *Prompt Exemplo:* "Você é um especialista em engenharia de dataset. Baseado nestes 5 exemplos de perguntas de clientes, gere 20 novas perguntas, mantendo o mesmo estilo e cobrindo as mesmas intenções (preço, estoque, frete, etc.). Exemplos: [Cole seus 5 exemplos aqui]"
 
-2. **Gerar Respostas:** Para cada uma das 20 novas instruções, peça ao modelo de IA para gerar a resposta em JSON, seguindo suas diretrizes.
+2. **Gerar Respostas:** Para cada uma das 20 novas instruções, peça ao modelo de IA para gerar a resposta em JSON, seguindo suas diretrizes. Salve cada JSON deste.
 
     - *Prompt Exemplo:* "Para a pergunta '[instrução gerada]', gere apenas a resposta em formato JSON, seguindo esta diretriz: [Cole sua diretriz da Etapa 1 aqui]. Responda apenas com o JSON."
 
@@ -87,6 +87,8 @@ Esta é a seção mais densa, focada em gerar dados programaticamente.
     - A IA "alucinou" ou inventou um `tipo_consulta` que não existe nas suas diretrizes? (Verificação de qualidade).
 
     - Corrija ou descarte as amostras ruins.
+
+Ao final, armazene todos os JSONS restantes em uma pasta criado por você chamada `respostas`.
 
 ## Seção 4: Processamento de Dados
 
@@ -104,7 +106,7 @@ Com o dataset bruto em mãos, a etapa final é o processamento para garantir que
 
 **Objetivo:** Escrever um script Python que executa os 4 passos do processamento de dados.
 
-1. **Carregue e Inspecione:** Use a biblioteca `datasets` da Hugging Face ou `pandas` para carregar seu dataset de ~20 amostras. Imprima o número de amostras e as primeiras 5 linhas.
+1. **Carregue e Inspecione:** Use a biblioteca `datasets` da Hugging Face ou `pandas` para carregar seu dataset de ~20 amostras.
 
 2. **Deduplique:** Use a função de deduplicação da biblioteca para remover quaisquer instruções idênticas. Imprima o número de amostras restantes.
 
@@ -112,7 +114,7 @@ Com o dataset bruto em mãos, a etapa final é o processamento para garantir que
 
 4. **Formate:** (Esta é a parte mais importante!)
 
-    - Escolha um modelo base (ex: Llama 3 8B Instruct).
+    - Escolha um modelo base (ex: Mistral 7B).
 
     - Encontre o "chat template" oficial dele.
 
@@ -138,3 +140,13 @@ def formatar_para_llama3(amostra):
 ```
 
 5. **Salve:** Salve o `dataset_formatado` em um arquivo `.jsonl`. Você pode usar esse dataset em um script de finetuning.
+
+
+## Envie suas conclusões
+
+Ao final de todos os passos, envie um Pull Request, contendo todos os arquivos solicitados durante as seções.
+
+No título do Pull Request coloque o número de matrícula e na descrição comente sobre suas interpretações e análises encontradas ao longo da atividade.
+
+### Referências
+Caso tenha interesse em se aprofundar no assunto, consulte o capítulo 8 - Dataset Engineering do livro AI Engineering Building Applications with Foundation Models.
